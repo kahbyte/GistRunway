@@ -7,15 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30A3D759270322C5000DDD5C /* GistAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A3D758270322C5000DDD5C /* GistAdapter.swift */; };
+		30A3D75B2703266A000DDD5C /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A3D75A2703266A000DDD5C /* ImageLoader.swift */; };
 		30AB07A527029E6800FE10B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AB07A427029E6800FE10B1 /* AppDelegate.swift */; };
 		30AB07A727029E6800FE10B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AB07A627029E6800FE10B1 /* SceneDelegate.swift */; };
 		30AB07A927029E6800FE10B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AB07A827029E6800FE10B1 /* ViewController.swift */; };
 		30AB07AC27029E6800FE10B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30AB07AA27029E6800FE10B1 /* Main.storyboard */; };
 		30AB07AE27029E6A00FE10B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30AB07AD27029E6A00FE10B1 /* Assets.xcassets */; };
 		30AB07B127029E6A00FE10B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30AB07AF27029E6A00FE10B1 /* LaunchScreen.storyboard */; };
+		30AB07BA2702A67600FE10B1 /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AB07B92702A67600FE10B1 /* APIHandler.swift */; };
+		30AB07BC2702A79100FE10B1 /* ReponseHandler+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AB07BB2702A79100FE10B1 /* ReponseHandler+Extension.swift */; };
+		30AB07BE2702A81600FE10B1 /* APILoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AB07BD2702A81600FE10B1 /* APILoader.swift */; };
+		30AB07C22702B4F400FE10B1 /* GistAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AB07C12702B4F400FE10B1 /* GistAPI.swift */; };
+		30AB07C52702B77700FE10B1 /* Gist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AB07C42702B77700FE10B1 /* Gist.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		30A3D758270322C5000DDD5C /* GistAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistAdapter.swift; sourceTree = "<group>"; };
+		30A3D75A2703266A000DDD5C /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		30AB07A127029E6800FE10B1 /* GistRunway.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GistRunway.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30AB07A427029E6800FE10B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30AB07A627029E6800FE10B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +33,11 @@
 		30AB07AD27029E6A00FE10B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30AB07B027029E6A00FE10B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30AB07B227029E6A00FE10B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30AB07B92702A67600FE10B1 /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
+		30AB07BB2702A79100FE10B1 /* ReponseHandler+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReponseHandler+Extension.swift"; sourceTree = "<group>"; };
+		30AB07BD2702A81600FE10B1 /* APILoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILoader.swift; sourceTree = "<group>"; };
+		30AB07C12702B4F400FE10B1 /* GistAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistAPI.swift; sourceTree = "<group>"; };
+		30AB07C42702B77700FE10B1 /* Gist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gist.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +70,9 @@
 		30AB07A327029E6800FE10B1 /* GistRunway */ = {
 			isa = PBXGroup;
 			children = (
+				30AB07C32702B75500FE10B1 /* Models */,
+				30AB07C02702B4D900FE10B1 /* Service */,
+				30AB07B827029FDE00FE10B1 /* Networking */,
 				30AB07A427029E6800FE10B1 /* AppDelegate.swift */,
 				30AB07A627029E6800FE10B1 /* SceneDelegate.swift */,
 				30AB07A827029E6800FE10B1 /* ViewController.swift */,
@@ -65,6 +82,34 @@
 				30AB07B227029E6A00FE10B1 /* Info.plist */,
 			);
 			path = GistRunway;
+			sourceTree = "<group>";
+		};
+		30AB07B827029FDE00FE10B1 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				30AB07B92702A67600FE10B1 /* APIHandler.swift */,
+				30AB07BB2702A79100FE10B1 /* ReponseHandler+Extension.swift */,
+				30AB07BD2702A81600FE10B1 /* APILoader.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		30AB07C02702B4D900FE10B1 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				30AB07C12702B4F400FE10B1 /* GistAPI.swift */,
+				30A3D75A2703266A000DDD5C /* ImageLoader.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		30AB07C32702B75500FE10B1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				30AB07C42702B77700FE10B1 /* Gist.swift */,
+				30A3D758270322C5000DDD5C /* GistAdapter.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +183,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30AB07C52702B77700FE10B1 /* Gist.swift in Sources */,
 				30AB07A927029E6800FE10B1 /* ViewController.swift in Sources */,
+				30A3D75B2703266A000DDD5C /* ImageLoader.swift in Sources */,
+				30AB07BC2702A79100FE10B1 /* ReponseHandler+Extension.swift in Sources */,
 				30AB07A527029E6800FE10B1 /* AppDelegate.swift in Sources */,
 				30AB07A727029E6800FE10B1 /* SceneDelegate.swift in Sources */,
+				30AB07C22702B4F400FE10B1 /* GistAPI.swift in Sources */,
+				30AB07BA2702A67600FE10B1 /* APIHandler.swift in Sources */,
+				30A3D759270322C5000DDD5C /* GistAdapter.swift in Sources */,
+				30AB07BE2702A81600FE10B1 /* APILoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
