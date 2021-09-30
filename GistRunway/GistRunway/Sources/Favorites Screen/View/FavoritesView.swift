@@ -10,15 +10,17 @@ import UIKit
 class FavoritesView: UIView {
     let gistsTableView: UITableView = {
         let tableView = UITableView()
-//        tableView.estimatedRowHeight = 104
-//        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 104
+        tableView.backgroundColor = .clear
+        tableView.rowHeight = UITableView.automaticDimension
         return tableView
     }()
     
+
     init() {
         super.init(frame: .zero)
-        backgroundColor = .white
-        addsubViews()
+        backgroundColor = UIColor(named: ApplicationColors.darkBackground.rawValue)
+        addSubviews()
         addConstraints()
     }
     
@@ -26,12 +28,14 @@ class FavoritesView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func addsubViews() {
+    func addSubviews() {
         addSubview(gistsTableView)
     }
     
-    private func addsubConstraints() {
+    func addConstraints() {
         gistsTableView.addConstraints(top: topAnchor, bottom: bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor)
     }
+    
+    
 
 }

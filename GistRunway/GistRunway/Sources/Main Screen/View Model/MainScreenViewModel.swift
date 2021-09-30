@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MainScreenViewModel: NSObject {
     var nextPage = 1
@@ -34,13 +35,7 @@ class MainScreenViewModel: NSObject {
                 self.adapt(responses: response)
                 self.fetchingMore.toggle()
                 self.nextPage += 1
-                print(self.nextPage)
-                
-                DispatchQueue.main.async {
-                    self.tableViewDataDelegate?.reloadTableView()
-                    print("reloaded tableview with \(self.adaptedGists.count) items")
-                }
-                
+                            
             case .failure(let error):
                 print("failed", error)
                 self.fetchingMore.toggle()
@@ -56,14 +51,9 @@ class MainScreenViewModel: NSObject {
             switch result {
                 
             case .success(let response):
-                print("clonei os gists")
                 self.gistsToBeRestored = self.adaptedGists
                 self.adaptedGists = []
-                print("to puxando o usuario")
                 self.adapt(responses: response)
-                DispatchQueue.main.async {
-                    print("reloaded tableview with \(self.adaptedGists.count) items")
-                }
                 
             case .failure(let error):
                 print("failed", error)
@@ -98,6 +88,25 @@ class MainScreenViewModel: NSObject {
             }
         }
     }
+    
+    func persistFavorite(model: GistAdapter) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context: NSManagedObjectContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "GistsCoreData", in: context)
+        let newFavorite = GistsCoreData(entity: entity!, insertInto: context)
+        newFavorite.ownerName = model.owner
+        newFavorite.image = model.ownerImage.cgImage?.dataProvider?.data as Data?
+        newFavorite.desc = model.description
+        
+        do {
+            try context.save()
+            print("feito")
+        } catch {
+            print("failed")
+        }
+        
+        
+    }
 }
 
 extension MainScreenViewModel: UITableViewDataSource {
@@ -109,9 +118,8 @@ extension MainScreenViewModel: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomGistsTableViewCell
         
         if adaptedGists.count > 0 {
-            cell.ownerName.text = adaptedGists[indexPath.row].owner
-            cell.ownerImageView.image = adaptedGists[indexPath.row].ownerImage
-            cell.gistDescription.text = adaptedGists[indexPath.row].description
+            let info = adaptedGists[indexPath.row]
+            cell.setup(model: CustomGistsTableViewCell.GistsInfo(name: info.owner, description: info.description, image: info.ownerImage))
         }
         
         return cell
