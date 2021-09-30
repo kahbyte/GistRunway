@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct ImageLoader: APIHandler {
+struct ImageRequest: APIHandler {
     var imageURL: String
     
     func makeRequest() -> URLRequest? {
