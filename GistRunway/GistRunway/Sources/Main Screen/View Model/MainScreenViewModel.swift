@@ -110,9 +110,10 @@ extension MainScreenViewModel: UITableViewDataSource {
         
         if adaptedGists.count > 0 {
             cell.ownerName.text = adaptedGists[indexPath.row].owner
-            cell.gistDescription.text = adaptedGists[indexPath.row].description
             cell.ownerImageView.image = adaptedGists[indexPath.row].ownerImage
+            cell.gistDescription.text = adaptedGists[indexPath.row].description
         }
+        
         return cell
     }
     

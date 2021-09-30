@@ -25,17 +25,35 @@ class MainScreenViewController: UIViewController {
     
     let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     
+    private var favorites: UIBarButtonItem = {
+       let button = UIBarButtonItem()
+        button.image = UIImage(systemName: "star.fill")
+        button.tintColor = UIColor(named: ApplicationColors.titleColor.rawValue)
+        button.action = #selector(pushToFavoritesScreen)
+        return button
+    }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        favorites.target = self
         gistsViewModel.tableViewDataDelegate = self
         searchController.searchBar.delegate = self
         searchController.searchBar.barStyle = .black
+
+        
+        self.navigationItem.rightBarButtonItem = favorites
         
 //        self.navigationItem.largeTitleDisplayMode = .always
         self.navigationItem.searchController = searchController
         self.title = "Gists"
         buildView()
+    }
+    
+    
+    @objc private func pushToFavoritesScreen(_ sender: UIBarButtonItem) {
+        let favoritesVC = FavoritesViewController()
+        self.navigationController?.pushViewController(favoritesVC, animated: true)
     }
     
     private func buildView() {

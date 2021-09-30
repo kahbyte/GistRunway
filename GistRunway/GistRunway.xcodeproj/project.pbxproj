@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		3069FE8F2704167C00CA9905 /* MainScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3069FE8E2704167C00CA9905 /* MainScreenViewModel.swift */; };
 		3069FE942704A61300CA9905 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3069FE932704A61300CA9905 /* RootViewController.swift */; };
+		3069FE992705644E00CA9905 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3069FE982705644E00CA9905 /* FavoritesViewController.swift */; };
+		3069FE9B2705651300CA9905 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3069FE9A2705651300CA9905 /* FavoritesView.swift */; };
+		3069FE9D2705653800CA9905 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3069FE9C2705653800CA9905 /* FavoritesViewModel.swift */; };
 		30A3D759270322C5000DDD5C /* GistAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A3D758270322C5000DDD5C /* GistAdapter.swift */; };
 		30A3D75B2703266A000DDD5C /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A3D75A2703266A000DDD5C /* ImageRequest.swift */; };
 		30A3D7B92703FE93000DDD5C /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A3D7B82703FE93000DDD5C /* MainScreenViewController.swift */; };
@@ -32,6 +35,9 @@
 /* Begin PBXFileReference section */
 		3069FE8E2704167C00CA9905 /* MainScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewModel.swift; sourceTree = "<group>"; };
 		3069FE932704A61300CA9905 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		3069FE982705644E00CA9905 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		3069FE9A2705651300CA9905 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		3069FE9C2705653800CA9905 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoritesViewModel.swift; path = ../../../../../../../../Downloads/FavoritesViewModel.swift; sourceTree = "<group>"; };
 		30A3D758270322C5000DDD5C /* GistAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistAdapter.swift; sourceTree = "<group>"; };
 		30A3D75A2703266A000DDD5C /* ImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
 		30A3D7B82703FE93000DDD5C /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +79,32 @@
 			path = "View Model";
 			sourceTree = "<group>";
 		};
+		3069FE952705642700CA9905 /* Favorites Screen */ = {
+			isa = PBXGroup;
+			children = (
+				3069FE972705643D00CA9905 /* View Model */,
+				3069FE962705643900CA9905 /* View */,
+				3069FE982705644E00CA9905 /* FavoritesViewController.swift */,
+			);
+			path = "Favorites Screen";
+			sourceTree = "<group>";
+		};
+		3069FE962705643900CA9905 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3069FE9A2705651300CA9905 /* FavoritesView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3069FE972705643D00CA9905 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				3069FE9C2705653800CA9905 /* FavoritesViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
 		30A3D7B22703FCF5000DDD5C /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +130,7 @@
 			children = (
 				3069FE932704A61300CA9905 /* RootViewController.swift */,
 				30A3D7B52703FE42000DDD5C /* Main Screen */,
+				3069FE952705642700CA9905 /* Favorites Screen */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -259,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3069FE9B2705651300CA9905 /* FavoritesView.swift in Sources */,
 				30AB07C52702B77700FE10B1 /* Gist.swift in Sources */,
 				30A3D7BF270401A5000DDD5C /* UIView+Extension.swift in Sources */,
 				3069FE942704A61300CA9905 /* RootViewController.swift in Sources */,
@@ -269,9 +303,11 @@
 				30AB07BC2702A79100FE10B1 /* ReponseHandler+Extension.swift in Sources */,
 				30AB07A527029E6800FE10B1 /* AppDelegate.swift in Sources */,
 				30AB07A727029E6800FE10B1 /* SceneDelegate.swift in Sources */,
+				3069FE992705644E00CA9905 /* FavoritesViewController.swift in Sources */,
 				30AB07C22702B4F400FE10B1 /* GistAPI.swift in Sources */,
 				30A3D7BD2704001A000DDD5C /* MainScreenView.swift in Sources */,
 				3069FE8F2704167C00CA9905 /* MainScreenViewModel.swift in Sources */,
+				3069FE9D2705653800CA9905 /* FavoritesViewModel.swift in Sources */,
 				30A3D7C1270404FF000DDD5C /* ApplicationColors.swift in Sources */,
 				30AB07BA2702A67600FE10B1 /* APIHandler.swift in Sources */,
 				30A3D7B92703FE93000DDD5C /* MainScreenViewController.swift in Sources */,

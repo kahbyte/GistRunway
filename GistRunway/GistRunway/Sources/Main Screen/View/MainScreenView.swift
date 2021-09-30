@@ -10,7 +10,7 @@ import UIKit
 class MainScreenView: UIView {
     let gistsTableView: UITableView = {
         let tableView = UITableView()
-        tableView.estimatedRowHeight = 110
+        tableView.estimatedRowHeight = 104
         tableView.rowHeight = UITableView.automaticDimension
         return tableView
     }()
