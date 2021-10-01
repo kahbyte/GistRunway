@@ -8,7 +8,6 @@
 import UIKit
 
 class CustomGistsTableViewCell: UITableViewCell {
-    
     private let container: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 10
@@ -17,37 +16,28 @@ class CustomGistsTableViewCell: UITableViewCell {
     
     let ownerImageView: CircularImageView = {
         let imageView = CircularImageView()
-        imageView.image = UIImage(named: "pp")
         return imageView
     }()
     
     let ownerName: UILabel = {
         let label = UILabel()
-        label.text = "Tutuzao lolps"
         label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
     
     let gistDescription: UILabel = {
         let label = UILabel()
-        label.text = "receita-de-miojo"
         label.font = UIFont.systemFont(ofSize: 16)
         label.numberOfLines = 0
         label.lineBreakMode = .byTruncatingHead
         return label
     }()
-    
-    private let gistStack: UIStackView = {
-        let stack = UIStackView()
-        stack.alignment = .leading
-        stack.axis = .vertical
-        stack.spacing = 4
-        return stack
-    }()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = .clear
+        
+        selectedBackgroundView?.backgroundColor = UIColor(named: ApplicationColors.lightBackground.rawValue)
         
         addSubviews()
         addConstraints()
@@ -64,17 +54,24 @@ class CustomGistsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func setup(model: GistAdapter) {
+        ownerName.text = model.owner
+        ownerImageView.image = model.ownerImage
+        gistDescription.text = model.description
+    }
+    
+    func setup(model: CommentAdapter) {
+        ownerName.text = model.userName
+        ownerImageView.image = model.userImage
+        gistDescription.text = model.body
+    }
+    
     func addSubviews() {
         addSubview(container)
         container.backgroundColor = UIColor(named: ApplicationColors.viewWhite.rawValue)!
         container.addSubview(ownerImageView)
         container.addSubview(ownerName)
         container.addSubview(gistDescription)
-//        container.addSubview(gistStack)
-//        gistStack.addArrangedSubview(ownerName)
-//        gistStack.addArrangedSubview(gistDescription)
-//        ownerImageView.layer.cornerRadius = 12
-        
     }
     
     func addConstraints() {
@@ -82,6 +79,6 @@ class CustomGistsTableViewCell: UITableViewCell {
         ownerImageView.addConstraints(top: container.topAnchor, leading: container.leadingAnchor, paddingTop: 12, paddingLeft: 12, width: 72, height: 72)
         ownerName.addConstraints(leading: ownerImageView.trailingAnchor, centerY: ownerImageView.centerYAnchor, paddingLeft: 13)
         gistDescription.addConstraints(top: ownerImageView.bottomAnchor, bottom: container.bottomAnchor, leading: ownerImageView.leadingAnchor, trailing: container.trailingAnchor, paddingTop: 18.5, paddingBottom: -14.5)
-//        gistStack.addConstraints(top: container.topAnchor, bottom: container.bottomAnchor, leading: ownerImageView.trailingAnchor, trailing: container.trailingAnchor, paddingTop: 20.5, paddingLeft: 12.9, paddingBottom: 20.5)
     }
+    
 }

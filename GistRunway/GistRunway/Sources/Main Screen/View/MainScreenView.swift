@@ -8,9 +8,12 @@
 import UIKit
 
 class MainScreenView: UIView {
+    
+    
     let gistsTableView: UITableView = {
         let tableView = UITableView()
         tableView.estimatedRowHeight = 104
+        tableView.backgroundColor = .clear
         tableView.rowHeight = UITableView.automaticDimension
         return tableView
     }()
@@ -26,8 +29,6 @@ class MainScreenView: UIView {
     
     init() {
         super.init(frame: .zero)
-        
-        gistsTableView.backgroundColor = .clear
         refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
         backgroundColor = UIColor(named: ApplicationColors.darkBackground.rawValue)
         addSubviews()

@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import CoreData
 
 class MainScreenViewModel: NSObject {
     var nextPage = 1
     var adaptedGists: [GistAdapter] = []
+    var comments: [Comments] = []
     var gistsToBeRestored: [GistAdapter] = []
     var fetchingMore = false
     
@@ -24,7 +26,7 @@ class MainScreenViewModel: NSObject {
     }
     
     func getGistsFrom(page: Int) {
-        let request = GistAPI(path: .getGists(page: nextPage))
+        let request = GistAPI<Gist>(path: .getGists(page: nextPage))
         let apiLoader = APILoader(apiRequest: request)
         fetchingMore = true
         
@@ -34,13 +36,7 @@ class MainScreenViewModel: NSObject {
                 self.adapt(responses: response)
                 self.fetchingMore.toggle()
                 self.nextPage += 1
-                print(self.nextPage)
-                
-                DispatchQueue.main.async {
-                    self.tableViewDataDelegate?.reloadTableView()
-                    print("reloaded tableview with \(self.adaptedGists.count) items")
-                }
-                
+                            
             case .failure(let error):
                 print("failed", error)
                 self.fetchingMore.toggle()
@@ -49,21 +45,16 @@ class MainScreenViewModel: NSObject {
     }
     
     func getGistsFrom(user: String) {
-        let request = GistAPI(path: .getGistsFrom(user: user.lowercased()))
+        let request = GistAPI<Gist>(path: .getGistsFrom(user: user.lowercased()))
         let apiLoader = APILoader(apiRequest: request)
         
         apiLoader.loadAPIRequest { result in
             switch result {
                 
             case .success(let response):
-                print("clonei os gists")
                 self.gistsToBeRestored = self.adaptedGists
                 self.adaptedGists = []
-                print("to puxando o usuario")
                 self.adapt(responses: response)
-                DispatchQueue.main.async {
-                    print("reloaded tableview with \(self.adaptedGists.count) items")
-                }
                 
             case .failure(let error):
                 print("failed", error)
@@ -75,7 +66,7 @@ class MainScreenViewModel: NSObject {
     func adapt(responses: [Gist]) {
         for response in responses {
             if let ownerInArray = adaptedGists.first(where: {$0.owner == response.owner.login}) {
-                let gist = GistAdapter(description: response.description ?? "", owner: response.owner.login, ownerImage: ownerInArray.ownerImage)
+                let gist = GistAdapter(description: response.description ?? "", owner: response.owner.login, ownerImage: ownerInArray.ownerImage, commentsURL: response.comments_url, forksURL: response.forks_url, files: response.fileList)
                 self.adaptedGists.append(gist)
             } else {
                 let userImageRequest = ImageRequest(imageURL: response.owner.avatar_url)
@@ -84,7 +75,7 @@ class MainScreenViewModel: NSObject {
                 apiLoader.loadAPIRequest { result in
                     switch result {
                     case.success(let image):
-                        let gist = GistAdapter(description: response.description ?? "", owner: response.owner.login, ownerImage: image!)
+                        let gist = GistAdapter(description: response.description ?? "", owner: response.owner.login, ownerImage: image!, commentsURL: response.comments_url, forksURL: response.forks_url, files: response.fileList)
                         self.adaptedGists.append(gist)
                         
                         DispatchQueue.main.async {
@@ -98,6 +89,25 @@ class MainScreenViewModel: NSObject {
             }
         }
     }
+    
+    func persistFavorite(model: GistAdapter) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context: NSManagedObjectContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "GistsCoreData", in: context)
+        let newFavorite = GistsCoreData(entity: entity!, insertInto: context)
+        newFavorite.ownerName = model.owner
+        newFavorite.image = model.ownerImage.cgImage?.dataProvider?.data as Data?
+        newFavorite.desc = model.description
+        
+        do {
+            try context.save()
+            print("feito")
+        } catch {
+            print("failed")
+        }
+        
+        
+    }
 }
 
 extension MainScreenViewModel: UITableViewDataSource {
@@ -109,13 +119,11 @@ extension MainScreenViewModel: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomGistsTableViewCell
         
         if adaptedGists.count > 0 {
-            cell.ownerName.text = adaptedGists[indexPath.row].owner
-            cell.ownerImageView.image = adaptedGists[indexPath.row].ownerImage
-            cell.gistDescription.text = adaptedGists[indexPath.row].description
+            let info = adaptedGists[indexPath.row]
+            cell.setup(model: info)
         }
         
         return cell
     }
-    
     
 }

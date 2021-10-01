@@ -26,7 +26,7 @@ class RootViewController: UINavigationController {
         self.navigationBar.standardAppearance = appearance
         self.navigationBar.scrollEdgeAppearance = appearance
         
-        let mainScreen = FavoritesViewController()
+        let mainScreen = MainScreenViewController()
         
         self.viewControllers = [mainScreen]
     }

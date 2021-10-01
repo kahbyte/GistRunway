@@ -21,9 +21,6 @@ class MainScreenViewController: UIViewController {
     private var gistsViewModel = MainScreenViewModel()
     private var isLookingForUser = false
     let searchController = UISearchController()
-    var gists: [Gist] = [Gist(id: "aaa", description: "aaa", owner: Owner(login: "aaaa", avatar_url: "aaaa"))]
-    
-    let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     
     private var favorites: UIBarButtonItem = {
        let button = UIBarButtonItem()
@@ -70,17 +67,12 @@ class MainScreenViewController: UIViewController {
         gistsViewModel.getGistsFrom(page: gistsViewModel.nextPage)
     }
     
-    private func handleMarkAsFavourite() {
-        print("marked as favourite")
+    private func handleMarkAsFavourite(index: Int) {
+        gistsViewModel.persistFavorite(model: gistsViewModel.adaptedGists[index])
     }
 }
 
 extension MainScreenViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-////        return 110
-//        return UITableView.automaticDimension
-//    }
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if !isLookingForUser {
             let offsetY = scrollView.contentOffset.y
@@ -96,17 +88,26 @@ extension MainScreenViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .normal, title: "Favourite", handler: {  [weak self] action, view, completionHandler in
-            self?.handleMarkAsFavourite()
+        let action = UIContextualAction(style: .normal, title: nil, handler: {  [weak self] action, view, completionHandler in
+            self?.handleMarkAsFavourite(index: indexPath.row)
             completionHandler(true)
         })
         
+        action.image = UIImage(systemName: "star.fill")
         action.backgroundColor = .systemYellow
         
         return UISwipeActionsConfiguration(actions: [action])
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedGist = gistsViewModel.adaptedGists[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
+        print(selectedGist)
+        
+        let detailsVC = DetailsViewController()
+        detailsVC.detailsViewModel.model = gistsViewModel.adaptedGists[indexPath.row]
+        self.navigationController?.pushViewController(detailsVC, animated: true)
+    }
 }
 
 extension MainScreenViewController: TableViewData, MainScreenUserIntents {
