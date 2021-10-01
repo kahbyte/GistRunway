@@ -8,8 +8,6 @@
 import UIKit
 
 class CustomGistsTableViewCell: UITableViewCell {
-    private(set) var model: GistsInfo!
-    
     private let container: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 10
@@ -56,11 +54,16 @@ class CustomGistsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setup(model: GistsInfo) {
-        self.model = model
-        ownerName.text = model.name
-        ownerImageView.image = model.image
+    func setup(model: GistAdapter) {
+        ownerName.text = model.owner
+        ownerImageView.image = model.ownerImage
         gistDescription.text = model.description
+    }
+    
+    func setup(model: CommentAdapter) {
+        ownerName.text = model.userName
+        ownerImageView.image = model.userImage
+        gistDescription.text = model.body
     }
     
     func addSubviews() {
@@ -69,11 +72,6 @@ class CustomGistsTableViewCell: UITableViewCell {
         container.addSubview(ownerImageView)
         container.addSubview(ownerName)
         container.addSubview(gistDescription)
-//        container.addSubview(gistStack)
-//        gistStack.addArrangedSubview(ownerName)
-//        gistStack.addArrangedSubview(gistDescription)
-//        ownerImageView.layer.cornerRadius = 12
-        
     }
     
     func addConstraints() {
@@ -83,10 +81,4 @@ class CustomGistsTableViewCell: UITableViewCell {
         gistDescription.addConstraints(top: ownerImageView.bottomAnchor, bottom: container.bottomAnchor, leading: ownerImageView.leadingAnchor, trailing: container.trailingAnchor, paddingTop: 18.5, paddingBottom: -14.5)
     }
     
-    struct GistsInfo {
-        var name: String
-        var description: String
-        var image: UIImage
-    }
-
 }

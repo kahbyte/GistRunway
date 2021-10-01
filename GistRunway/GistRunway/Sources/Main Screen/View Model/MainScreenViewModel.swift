@@ -11,6 +11,7 @@ import CoreData
 class MainScreenViewModel: NSObject {
     var nextPage = 1
     var adaptedGists: [GistAdapter] = []
+    var comments: [Comments] = []
     var gistsToBeRestored: [GistAdapter] = []
     var fetchingMore = false
     
@@ -25,7 +26,7 @@ class MainScreenViewModel: NSObject {
     }
     
     func getGistsFrom(page: Int) {
-        let request = GistAPI(path: .getGists(page: nextPage))
+        let request = GistAPI<Gist>(path: .getGists(page: nextPage))
         let apiLoader = APILoader(apiRequest: request)
         fetchingMore = true
         
@@ -44,7 +45,7 @@ class MainScreenViewModel: NSObject {
     }
     
     func getGistsFrom(user: String) {
-        let request = GistAPI(path: .getGistsFrom(user: user.lowercased()))
+        let request = GistAPI<Gist>(path: .getGistsFrom(user: user.lowercased()))
         let apiLoader = APILoader(apiRequest: request)
         
         apiLoader.loadAPIRequest { result in
@@ -65,7 +66,7 @@ class MainScreenViewModel: NSObject {
     func adapt(responses: [Gist]) {
         for response in responses {
             if let ownerInArray = adaptedGists.first(where: {$0.owner == response.owner.login}) {
-                let gist = GistAdapter(description: response.description ?? "", owner: response.owner.login, ownerImage: ownerInArray.ownerImage)
+                let gist = GistAdapter(description: response.description ?? "", owner: response.owner.login, ownerImage: ownerInArray.ownerImage, commentsURL: response.comments_url, forksURL: response.forks_url)
                 self.adaptedGists.append(gist)
             } else {
                 let userImageRequest = ImageRequest(imageURL: response.owner.avatar_url)
@@ -74,7 +75,7 @@ class MainScreenViewModel: NSObject {
                 apiLoader.loadAPIRequest { result in
                     switch result {
                     case.success(let image):
-                        let gist = GistAdapter(description: response.description ?? "", owner: response.owner.login, ownerImage: image!)
+                        let gist = GistAdapter(description: response.description ?? "", owner: response.owner.login, ownerImage: image!, commentsURL: response.comments_url, forksURL: response.forks_url)
                         self.adaptedGists.append(gist)
                         
                         DispatchQueue.main.async {
@@ -119,11 +120,10 @@ extension MainScreenViewModel: UITableViewDataSource {
         
         if adaptedGists.count > 0 {
             let info = adaptedGists[indexPath.row]
-            cell.setup(model: CustomGistsTableViewCell.GistsInfo(name: info.owner, description: info.description, image: info.ownerImage))
+            cell.setup(model: info)
         }
         
         return cell
     }
-    
     
 }

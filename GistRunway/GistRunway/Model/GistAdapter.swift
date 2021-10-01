@@ -11,4 +11,6 @@ struct GistAdapter {
     var description: String
     var owner: String
     var ownerImage: UIImage
+    var commentsURL: String
+    var forksURL: String
 }

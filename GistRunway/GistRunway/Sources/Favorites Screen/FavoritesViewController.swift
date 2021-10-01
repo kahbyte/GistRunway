@@ -16,7 +16,7 @@ class FavoritesViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Favorites"
         buildView()
-        fetchCoreData()
+//        fetchCoreData()
     }
     
     private func buildView() {
@@ -31,23 +31,23 @@ class FavoritesViewController: UIViewController {
         customView?.gistsTableView.register(CustomGistsTableViewCell.self, forCellReuseIdentifier: "favoriteCell")
     }
     
-    func fetchCoreData() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context: NSManagedObjectContext = appDelegate.persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "GistsCoreData")
-        do {
-            let results:NSArray = try context.fetch(request) as NSArray
-            for result in results {
-                let gist = result as! GistsCoreData
-                let adaptedGist = GistAdapter(description: gist.desc, owner: gist.ownerName, ownerImage: (UIImage(data: gist.image) ?? UIImage(named: "pp"))!)
-                favoriteGists.append(adaptedGist)
-                print(gist.ownerName!, gist.desc)
-            }
-        } catch {
-            print("error")
-        }
-        
-    }
+//    func fetchCoreData() {
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        let context: NSManagedObjectContext = appDelegate.persistentContainer.viewContext
+//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "GistsCoreData")
+//        do {
+//            let results:NSArray = try context.fetch(request) as NSArray
+//            for result in results {
+//                let gist = result as! GistsCoreData
+//                let adaptedGist = GistAdapter(description: gist.desc, owner: gist.ownerName, ownerImage: (UIImage(data: gist.image) ?? UIImage(named: "pp"))!)
+//                favoriteGists.append(adaptedGist)
+//                print(gist.ownerName!, gist.desc)
+//            }
+//        } catch {
+//            print("error")
+//        }
+//
+//    }
     
 }
 
@@ -98,7 +98,7 @@ extension FavoritesViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell", for: indexPath) as! CustomGistsTableViewCell
         if favoriteGists.count > 0 {
             let info = favoriteGists[indexPath.row]
-            cell.setup(model: CustomGistsTableViewCell.GistsInfo(name: info.owner, description: info.description, image: info.ownerImage))
+            cell.setup(model: info)
         }
         
         return cell
