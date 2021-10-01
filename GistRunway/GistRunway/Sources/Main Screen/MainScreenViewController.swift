@@ -20,7 +20,7 @@ class MainScreenViewController: UIViewController {
     private var customView: MainScreenView? = nil
     private var gistsViewModel = MainScreenViewModel()
     private var isLookingForUser = false
-    let searchController = UISearchController()
+    private let searchController = UISearchController()
     
     private var favorites: UIBarButtonItem = {
        let button = UIBarButtonItem()
@@ -37,11 +37,10 @@ class MainScreenViewController: UIViewController {
         gistsViewModel.tableViewDataDelegate = self
         searchController.searchBar.delegate = self
         searchController.searchBar.barStyle = .black
-
+        
+        print(gistsViewModel.fetchingMore)
         
         self.navigationItem.rightBarButtonItem = favorites
-        
-//        self.navigationItem.largeTitleDisplayMode = .always
         self.navigationItem.searchController = searchController
         self.title = "Gists"
         buildView()
@@ -61,15 +60,33 @@ class MainScreenViewController: UIViewController {
         
         customView?.mainScreenDelegate = self
         customView!.gistsTableView.delegate = self
-        customView!.gistsTableView.dataSource = gistsViewModel
+        customView!.gistsTableView.dataSource = self
         customView?.gistsTableView.register(CustomGistsTableViewCell.self, forCellReuseIdentifier: "cell")
         
         gistsViewModel.getGistsFrom(page: gistsViewModel.nextPage)
     }
-    
+   
     private func handleMarkAsFavourite(index: Int) {
         gistsViewModel.persistFavorite(model: gistsViewModel.adaptedGists[index])
     }
+}
+
+extension MainScreenViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.gistsViewModel.adaptedGists.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomGistsTableViewCell
+        
+        if gistsViewModel.adaptedGists.count > 0 {
+            let info = gistsViewModel.adaptedGists[indexPath.row]
+            cell.setup(model: info)
+        }
+        
+        return cell
+    }
+    
 }
 
 extension MainScreenViewController: UITableViewDelegate {
@@ -143,6 +160,5 @@ extension MainScreenViewController: UISearchResultsUpdating, UISearchBarDelegate
     }
     
 }
-
 
 

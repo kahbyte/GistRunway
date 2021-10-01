@@ -18,7 +18,7 @@ class CustomFilesCell: UITableViewCell {
         return collection
     }()
     
-    var model: [FilesDetail] = []
+    var model: [FileDetails] = []
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

@@ -64,7 +64,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
         language.addConstraints(top: fileType.bottomAnchor, leading: fileType.leadingAnchor, trailing: fileTitle.trailingAnchor, paddingTop: 6)
     }
     
-    func setup(model: FilesDetail) {
+    func setup(model: FileDetails) {
         self.fileTitle.text = model.filename
         self.fileType.text = model.type
         self.language.text = model.language

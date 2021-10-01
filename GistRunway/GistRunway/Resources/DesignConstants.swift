@@ -15,3 +15,8 @@ enum ApplicationColors: String {
     case strongPurple = "strongPurple"
     case titleColor = "titleColor"
 }
+
+enum ApplicationFonts: String {
+    case bold = "Helvetica Neue Bold"
+    case normal = "Helvetica Neue "
+}

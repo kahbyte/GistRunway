@@ -10,13 +10,13 @@ import CoreData
 
 class FavoritesViewController: UIViewController {
     private var customView: FavoritesView? = nil
-    var favoriteGists: [GistAdapter] = []
+    private var favoritesViewModel = FavoritesViewModel()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Favorites"
         buildView()
-//        fetchCoreData()
     }
     
     private func buildView() {
@@ -29,26 +29,9 @@ class FavoritesViewController: UIViewController {
         customView!.gistsTableView.delegate = self
         customView!.gistsTableView.dataSource = self
         customView?.gistsTableView.register(CustomGistsTableViewCell.self, forCellReuseIdentifier: "favoriteCell")
+        
+        favoritesViewModel.fetchCoreData()
     }
-    
-    func fetchCoreData() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context: NSManagedObjectContext = appDelegate.persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "GistsCoreData")
-        do {
-            let results:NSArray = try context.fetch(request) as NSArray
-            for result in results {
-                let gist = result as! GistsCoreData
-                let adaptedGist = GistAdapter(description: gist.desc, owner: gist.ownerName, ownerImage: (UIImage(data: gist.image!) ?? UIImage(named: "pp"))!, commentsURL: "dor", forksURL: "sofrimento", files: [FilesDetail(filename: nil, type: nil, language: nil, raw_url: nil)])
-                favoriteGists.append(adaptedGist)
-                print(gist.ownerName!, gist.desc)
-            }
-        } catch {
-            print("error")
-        }
-
-    }
-    
 }
 
 extension FavoritesViewController: UITableViewDelegate {
@@ -66,22 +49,17 @@ extension FavoritesViewController: UITableViewDelegate {
     }
 
     private func handleRemoveFavorite(index: IndexPath) {
-        customView?.gistsTableView.deleteRows(at: [index], with: .automatic)
-        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context: NSManagedObjectContext = appDelegate.persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "GistsCoreData")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "FavoriteGists")
         do {
             let results:NSArray = try context.fetch(request) as NSArray
-            for result in results {
-                let gist = result as! GistsCoreData
-                
-                if(gist.ownerName == favoriteGists[index.row].owner && gist.desc == favoriteGists[index.row].description) {
-                    context.delete(gist)
-                    favoriteGists.remove(at: index.row)
-                    try context.save()
-                }
-            }
+            let result = results[index.row] as! FavoriteGists
+            
+            context.delete(result)
+            favoritesViewModel.favoriteGists.remove(at: index.row)
+            try context.save()
+            customView?.gistsTableView.reloadData()
         } catch {
             print("error")
         }
@@ -91,17 +69,27 @@ extension FavoritesViewController: UITableViewDelegate {
 extension FavoritesViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return favoriteGists.count
+        return favoritesViewModel.favoriteGists.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell", for: indexPath) as! CustomGistsTableViewCell
-        if favoriteGists.count > 0 {
-            let info = favoriteGists[indexPath.row]
+        if favoritesViewModel.favoriteGists.count > 0 {
+            let info = favoritesViewModel.favoriteGists[indexPath.row]
             cell.setup(model: info)
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedGist = favoritesViewModel.favoriteGists[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
+        print(selectedGist)
+        
+        let detailsVC = DetailsViewController()
+        detailsVC.detailsViewModel.model = favoritesViewModel.favoriteGists[indexPath.row]
+        self.navigationController?.pushViewController(detailsVC, animated: true)
     }
 
 
