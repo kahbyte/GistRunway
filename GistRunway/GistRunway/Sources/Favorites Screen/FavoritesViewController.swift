@@ -31,23 +31,23 @@ class FavoritesViewController: UIViewController {
         customView?.gistsTableView.register(CustomGistsTableViewCell.self, forCellReuseIdentifier: "favoriteCell")
     }
     
-//    func fetchCoreData() {
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        let context: NSManagedObjectContext = appDelegate.persistentContainer.viewContext
-//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "GistsCoreData")
-//        do {
-//            let results:NSArray = try context.fetch(request) as NSArray
-//            for result in results {
-//                let gist = result as! GistsCoreData
-//                let adaptedGist = GistAdapter(description: gist.desc, owner: gist.ownerName, ownerImage: (UIImage(data: gist.image) ?? UIImage(named: "pp"))!)
-//                favoriteGists.append(adaptedGist)
-//                print(gist.ownerName!, gist.desc)
-//            }
-//        } catch {
-//            print("error")
-//        }
-//
-//    }
+    func fetchCoreData() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context: NSManagedObjectContext = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "GistsCoreData")
+        do {
+            let results:NSArray = try context.fetch(request) as NSArray
+            for result in results {
+                let gist = result as! GistsCoreData
+                let adaptedGist = GistAdapter(description: gist.desc, owner: gist.ownerName, ownerImage: (UIImage(data: gist.image!) ?? UIImage(named: "pp"))!, commentsURL: "dor", forksURL: "sofrimento", files: [FilesDetail(filename: nil, type: nil, language: nil, raw_url: nil)])
+                favoriteGists.append(adaptedGist)
+                print(gist.ownerName!, gist.desc)
+            }
+        } catch {
+            print("error")
+        }
+
+    }
     
 }
 

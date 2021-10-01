@@ -30,7 +30,7 @@ class DetailsHeaderView: UIView {
         label.font = UIFont(name: "Helvetica Neue Bold", size: 20)
         label.text = "Kaisa k/da AR"
         label.textColor = UIColor(named: ApplicationColors.titleColor.rawValue)
-        label.numberOfLines = 0
+        label.numberOfLines = 1
         label.lineBreakMode = .byTruncatingHead
         return label
     }()
@@ -64,7 +64,7 @@ class DetailsHeaderView: UIView {
     func addConstraints() {
         userImageView.addConstraints(top: safeAreaLayoutGuide.topAnchor, centerX: centerXAnchor, paddingTop: 67, width: 227.15, height: 227.15)
         userName.addConstraints(top: userImageView.bottomAnchor, centerX: centerXAnchor, paddingTop: 36)
-        gistName.addConstraints(top: userName.bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor, paddingTop: 35.9,  paddingLeft: 39.5)
+        gistName.addConstraints(top: userName.bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor, paddingTop: 35.9,  paddingLeft: 39.5, paddingRight: -39.5)
         detailsView.addConstraints(top: gistName.bottomAnchor, bottom: bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor, paddingTop: 11.9, paddingLeft: 39.5, paddingBottom: -36, paddingRight: -39.5)
         
     }

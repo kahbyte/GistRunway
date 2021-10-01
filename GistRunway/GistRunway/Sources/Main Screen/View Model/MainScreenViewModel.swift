@@ -66,7 +66,7 @@ class MainScreenViewModel: NSObject {
     func adapt(responses: [Gist]) {
         for response in responses {
             if let ownerInArray = adaptedGists.first(where: {$0.owner == response.owner.login}) {
-                let gist = GistAdapter(description: response.description ?? "", owner: response.owner.login, ownerImage: ownerInArray.ownerImage, commentsURL: response.comments_url, forksURL: response.forks_url)
+                let gist = GistAdapter(description: response.description ?? "", owner: response.owner.login, ownerImage: ownerInArray.ownerImage, commentsURL: response.comments_url, forksURL: response.forks_url, files: response.fileList)
                 self.adaptedGists.append(gist)
             } else {
                 let userImageRequest = ImageRequest(imageURL: response.owner.avatar_url)
@@ -75,7 +75,7 @@ class MainScreenViewModel: NSObject {
                 apiLoader.loadAPIRequest { result in
                     switch result {
                     case.success(let image):
-                        let gist = GistAdapter(description: response.description ?? "", owner: response.owner.login, ownerImage: image!, commentsURL: response.comments_url, forksURL: response.forks_url)
+                        let gist = GistAdapter(description: response.description ?? "", owner: response.owner.login, ownerImage: image!, commentsURL: response.comments_url, forksURL: response.forks_url, files: response.fileList)
                         self.adaptedGists.append(gist)
                         
                         DispatchQueue.main.async {

@@ -76,49 +76,5 @@ class DetailsViewModel: NSObject {
     }
 }
 
-extension DetailsViewModel: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return tableViewSections.count
-    }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            return adaptedComments.count
-        default:
-            return 0
-        }
-    }
-    
-
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "filesCell", for: indexPath) as! CustomFilesCell
-            return cell
-        case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "commentsCell", for: indexPath) as! CustomGistsTableViewCell
-            cell.setup(model: adaptedComments[indexPath.row])
-            return cell
-        default:
-            return UITableViewCell()
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return tableViewSections[0]
-        case 1:
-            return tableViewSections[1]
-        default:
-            return "vish"
-        }
-    }
-
-}
 

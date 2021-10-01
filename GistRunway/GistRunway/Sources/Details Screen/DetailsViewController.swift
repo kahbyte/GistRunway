@@ -6,6 +6,11 @@
 //
 
 import UIKit
+import WebKit
+
+protocol DetailsViewControllerProtocol: AnyObject {
+    func openFileUrl(url: URL)
+}
 
 class DetailsViewController: UIViewController {
     private var customView: DetailsView? = nil
@@ -29,7 +34,7 @@ class DetailsViewController: UIViewController {
         guard let newView = (view as? DetailsView) else { return }
         customView = newView
         customView?.detailsTableView.delegate = self
-        customView?.detailsTableView.dataSource = detailsViewModel
+        customView?.detailsTableView.dataSource = self
         customView?.detailsTableView.register(CustomGistsTableViewCell.self, forCellReuseIdentifier: "commentsCell")
         customView?.detailsTableView.register(CustomFilesCell.self, forCellReuseIdentifier: "filesCell")
         
@@ -54,9 +59,67 @@ extension DetailsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         return 23
     }
+    
+
 }
 
-extension DetailsViewController: TableViewData {
+extension DetailsViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return detailsViewModel.tableViewSections.count
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return detailsViewModel.adaptedComments.count
+        default:
+            return 0
+        }
+    }
+    
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return detailsViewModel.tableViewSections[0]
+        case 1:
+            return detailsViewModel.tableViewSections[1]
+        default:
+            return ""
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "filesCell", for: indexPath) as! CustomFilesCell
+            cell.model = detailsViewModel.model.files
+            cell.detailsViewDelegate = self
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "commentsCell", for: indexPath) as! CustomGistsTableViewCell
+            cell.setup(model: detailsViewModel.adaptedComments[indexPath.row])
+            return cell
+        default:
+            return UITableViewCell()
+        }
+    }
+
+}
+
+extension DetailsViewController: TableViewData, DetailsViewControllerProtocol {
+    func openFileUrl(url: URL) {
+        let web = WKWebView.init(frame: UIScreen.main.bounds)
+        web.load(URLRequest(url: url))
+        
+        let controller = UIViewController()
+        controller.view.addSubview(web)
+        present(controller, animated: true)  
+    }
+    
     func reloadTableView() {
         customView?.detailsTableView.reloadData()
         header?.detailsView.commentsQuantityLabel.text = "\(detailsViewModel.adaptedComments.count)"
