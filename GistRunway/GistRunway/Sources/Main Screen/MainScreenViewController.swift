@@ -148,7 +148,6 @@ extension MainScreenViewController: UISearchResultsUpdating, UISearchBarDelegate
         self.gistsViewModel.adaptedGists = self.gistsViewModel.gistsToBeRestored
         reloadTableView()
         isLookingForUser = false
-        print("canceled")
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
