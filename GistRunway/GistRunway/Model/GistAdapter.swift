@@ -13,5 +13,5 @@ struct GistAdapter {
     var ownerImage: UIImage
     var commentsURL: String
     var forksURL: String
-    var files: [FilesDetail]
+    var files: [FileDetails]
 }

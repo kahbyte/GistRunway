@@ -10,7 +10,6 @@ import UIKit
 class DetailsHeaderView: UIView {
     let userImageView: CircularImageView = {
         let imageView = CircularImageView()
-        imageView.image = UIImage(named: "pp")
         imageView.layer.borderWidth = 4
         imageView.layer.borderColor = UIColor(named: ApplicationColors.titleColor.rawValue)?.cgColor
         
@@ -20,7 +19,6 @@ class DetailsHeaderView: UIView {
     let userName: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Helvetica Neue Bold", size: 30)
-        label.text = "Tutuzao"
         label.textColor = UIColor(named: ApplicationColors.titleColor.rawValue)
         return label
     }()

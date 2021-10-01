@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30280C9A2706CBCA00265B6A /* GistsRunwayPersistence.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30280C982706CBCA00265B6A /* GistsRunwayPersistence.xcdatamodeld */; };
 		3069FE8F2704167C00CA9905 /* MainScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3069FE8E2704167C00CA9905 /* MainScreenViewModel.swift */; };
 		3069FE942704A61300CA9905 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3069FE932704A61300CA9905 /* RootViewController.swift */; };
 		3069FE992705644E00CA9905 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3069FE982705644E00CA9905 /* FavoritesViewController.swift */; };
@@ -16,7 +17,7 @@
 		30A3D7B92703FE93000DDD5C /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A3D7B82703FE93000DDD5C /* MainScreenViewController.swift */; };
 		30A3D7BD2704001A000DDD5C /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A3D7BC2704001A000DDD5C /* MainScreenView.swift */; };
 		30A3D7BF270401A5000DDD5C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A3D7BE270401A5000DDD5C /* UIView+Extension.swift */; };
-		30A3D7C1270404FF000DDD5C /* ApplicationColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A3D7C0270404FF000DDD5C /* ApplicationColors.swift */; };
+		30A3D7C1270404FF000DDD5C /* DesignConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A3D7C0270404FF000DDD5C /* DesignConstants.swift */; };
 		30A3D7C427040C33000DDD5C /* CustomGistsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A3D7C327040C33000DDD5C /* CustomGistsTableViewCell.swift */; };
 		30A3D7C6270411B4000DDD5C /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A3D7C5270411B4000DDD5C /* CircularImageView.swift */; };
 		30AB07A527029E6800FE10B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AB07A427029E6800FE10B1 /* AppDelegate.swift */; };
@@ -36,14 +37,13 @@
 		30D8CD6F2706808000EE4C36 /* CustomFilesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D8CD6E2706808000EE4C36 /* CustomFilesCell.swift */; };
 		30D8CD712706818800EE4C36 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D8CD702706818800EE4C36 /* CustomCollectionViewCell.swift */; };
 		30F486602705773A0053BA0E /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F4865F2705773A0053BA0E /* FavoritesView.swift */; };
-		30F486692705852C0053BA0E /* GistsCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30F486672705852C0053BA0E /* GistsCoreDataModel.xcdatamodeld */; };
-		30F4866C270585BB0053BA0E /* GistCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F4866B270585BB0053BA0E /* GistCoreData.swift */; };
 		30F486942705E3770053BA0E /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F486932705E3770053BA0E /* DetailsViewController.swift */; };
 		30F486972705E3A10053BA0E /* DetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F486962705E3A10053BA0E /* DetailsHeaderView.swift */; };
 		30F4869A2705E3B60053BA0E /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F486992705E3B60053BA0E /* DetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		30280C992706CBCA00265B6A /* GistsRunwayPersistence.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GistsRunwayPersistence.xcdatamodel; sourceTree = "<group>"; };
 		3069FE8E2704167C00CA9905 /* MainScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewModel.swift; sourceTree = "<group>"; };
 		3069FE932704A61300CA9905 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		3069FE982705644E00CA9905 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
@@ -53,7 +53,7 @@
 		30A3D7B82703FE93000DDD5C /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		30A3D7BC2704001A000DDD5C /* MainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
 		30A3D7BE270401A5000DDD5C /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		30A3D7C0270404FF000DDD5C /* ApplicationColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationColors.swift; sourceTree = "<group>"; };
+		30A3D7C0270404FF000DDD5C /* DesignConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignConstants.swift; sourceTree = "<group>"; };
 		30A3D7C327040C33000DDD5C /* CustomGistsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGistsTableViewCell.swift; sourceTree = "<group>"; };
 		30A3D7C5270411B4000DDD5C /* CircularImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
 		30AB07A127029E6800FE10B1 /* GistRunway.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GistRunway.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,8 +75,6 @@
 		30D8CD6E2706808000EE4C36 /* CustomFilesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFilesCell.swift; sourceTree = "<group>"; };
 		30D8CD702706818800EE4C36 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		30F4865F2705773A0053BA0E /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
-		30F486682705852C0053BA0E /* GistsCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GistsCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
-		30F4866B270585BB0053BA0E /* GistCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GistCoreData.swift; sourceTree = "<group>"; };
 		30F486932705E3770053BA0E /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		30F486962705E3A10053BA0E /* DetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsHeaderView.swift; sourceTree = "<group>"; };
 		30F486992705E3B60053BA0E /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 		30A3D7B22703FCF5000DDD5C /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				30F486672705852C0053BA0E /* GistsCoreDataModel.xcdatamodeld */,
 				30AB07A427029E6800FE10B1 /* AppDelegate.swift */,
 				30AB07AF27029E6A00FE10B1 /* LaunchScreen.storyboard */,
 				30AB07A627029E6800FE10B1 /* SceneDelegate.swift */,
@@ -143,7 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				30AB07AD27029E6A00FE10B1 /* Assets.xcassets */,
-				30A3D7C0270404FF000DDD5C /* ApplicationColors.swift */,
+				30A3D7C0270404FF000DDD5C /* DesignConstants.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -247,7 +244,7 @@
 				30AB07C42702B77700FE10B1 /* Gist.swift */,
 				30D8CD6C27066F7500EE4C36 /* CommentAdapter.swift */,
 				30A3D758270322C5000DDD5C /* GistAdapter.swift */,
-				30F4866B270585BB0053BA0E /* GistCoreData.swift */,
+				30280C982706CBCA00265B6A /* GistsRunwayPersistence.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -352,7 +349,6 @@
 				30AB07C52702B77700FE10B1 /* Gist.swift in Sources */,
 				30A3D7BF270401A5000DDD5C /* UIView+Extension.swift in Sources */,
 				3069FE942704A61300CA9905 /* RootViewController.swift in Sources */,
-				30F4866C270585BB0053BA0E /* GistCoreData.swift in Sources */,
 				30AB07A927029E6800FE10B1 /* ViewController.swift in Sources */,
 				30A3D75B2703266A000DDD5C /* ImageRequest.swift in Sources */,
 				30D8CD6F2706808000EE4C36 /* CustomFilesCell.swift in Sources */,
@@ -371,14 +367,14 @@
 				30A3D7BD2704001A000DDD5C /* MainScreenView.swift in Sources */,
 				3069FE8F2704167C00CA9905 /* MainScreenViewModel.swift in Sources */,
 				30F4869A2705E3B60053BA0E /* DetailsViewModel.swift in Sources */,
-				30F486692705852C0053BA0E /* GistsCoreDataModel.xcdatamodeld in Sources */,
 				3069FE9D2705653800CA9905 /* FavoritesViewModel.swift in Sources */,
-				30A3D7C1270404FF000DDD5C /* ApplicationColors.swift in Sources */,
+				30A3D7C1270404FF000DDD5C /* DesignConstants.swift in Sources */,
 				30AB07BA2702A67600FE10B1 /* APIHandler.swift in Sources */,
 				30A3D7B92703FE93000DDD5C /* MainScreenViewController.swift in Sources */,
 				30D8CD712706818800EE4C36 /* CustomCollectionViewCell.swift in Sources */,
 				30A3D759270322C5000DDD5C /* GistAdapter.swift in Sources */,
 				30D8CD6D27066F7500EE4C36 /* CommentAdapter.swift in Sources */,
+				30280C9A2706CBCA00265B6A /* GistsRunwayPersistence.xcdatamodeld in Sources */,
 				30AB07BE2702A81600FE10B1 /* APILoader.swift in Sources */,
 				30F486972705E3A10053BA0E /* DetailsHeaderView.swift in Sources */,
 			);
@@ -594,14 +590,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		30F486672705852C0053BA0E /* GistsCoreDataModel.xcdatamodeld */ = {
+		30280C982706CBCA00265B6A /* GistsRunwayPersistence.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				30F486682705852C0053BA0E /* GistsCoreDataModel.xcdatamodel */,
+				30280C992706CBCA00265B6A /* GistsRunwayPersistence.xcdatamodel */,
 			);
-			currentVersion = 30F486682705852C0053BA0E /* GistsCoreDataModel.xcdatamodel */;
-			name = GistsCoreDataModel.xcdatamodeld;
-			path = "../../../../../../Downloads/editando app nejoei /produto-enjoei/GistsCoreDataModel.xcdatamodeld";
+			currentVersion = 30280C992706CBCA00265B6A /* GistsRunwayPersistence.xcdatamodel */;
+			path = GistsRunwayPersistence.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -9,7 +9,7 @@ import Foundation
 
 struct Gist: Codable {
     var id: String
-    var files: [String: FilesDetail]?
+    var files: [String: FileDetails]?
     var description: String?
     var owner: Owner
     var comments: Int
@@ -17,7 +17,7 @@ struct Gist: Codable {
     var forks_url: String
 }
 
-struct FilesDetail: Codable {
+struct FileDetails: Codable {
     var filename: String?
     var type: String?
     var language: String?
@@ -45,8 +45,8 @@ struct Forks: Codable {
 }
 
 extension Gist {
-    var fileList: [FilesDetail]  {
-        var fileList = [FilesDetail]()
+    var fileList: [FileDetails]  {
+        var fileList = [FileDetails]()
 
         files?.forEach { data in
             fileList.append(data.value)
